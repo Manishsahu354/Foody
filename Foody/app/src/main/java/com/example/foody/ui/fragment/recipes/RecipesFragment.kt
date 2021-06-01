@@ -2,30 +2,33 @@ package com.example.foody.ui.fragment.recipes
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foody.viewmodels.MainViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foody.R
 import com.example.foody.adapters.RecipesAdapter
 import com.example.foody.databinding.FragmentRecipesBinding
-import com.example.foody.util.Constants.Companion.API_KEY
 import com.example.foody.util.NetworkResult
 import com.example.foody.util.observeOnce
+import com.example.foody.viewmodels.MainViewModel
 import com.example.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
+
+    private val args by navArgs<RecipesFragmentArgs>()
 
     private var _binding:FragmentRecipesBinding? = null
     private val binding get() = _binding!!
@@ -65,6 +68,20 @@ class RecipesFragment : Fragment() {
         binding.recyclerView.adapter = mAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
+
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy < 0  && !binding.recipesFab.isShown()) binding.recipesFab.show()
+                else if (dy > 0  && binding.recipesFab.isShown()) binding.recipesFab.hide()
+
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+
+
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
     }
 
 
@@ -72,7 +89,7 @@ class RecipesFragment : Fragment() {
         lifecycleScope.launch {
             Log.d("RecipesFragment","requestApiData Called")
             mainViewModel.readRecipe.observeOnce(viewLifecycleOwner, Observer {database ->
-                if(database.isNotEmpty()){
+                if(database.isNotEmpty() && !args.backFromBottomSheet){
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 }else{

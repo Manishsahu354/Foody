@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.*
 import com.example.foody.util.Constants
+import com.example.foody.util.Constants.Companion.DEFAULT_DIET_TYPE
+import com.example.foody.util.Constants.Companion.DEFAULT_MEAL_TYPE
 import com.example.foody.util.Constants.Companion.PREFERENCES_DIET_TYPE
 import com.example.foody.util.Constants.Companion.PREFERENCES_DIET_TYPE_ID
 import com.example.foody.util.Constants.Companion.PREFERENCES_MEAL_TYPE
@@ -53,9 +55,9 @@ class DataStoreRepository @Inject constructor(
             }
         }
         .map { preferences ->
-            val selectedMealType = preferences[PreferenceKeys.selectedMealType] ?: Constants.DEFAULT_MEAL_TYPE
+            val selectedMealType = preferences[PreferenceKeys.selectedMealType] ?: DEFAULT_MEAL_TYPE
             val selectedMealTypeId = preferences[PreferenceKeys.selectedMealTypeId] ?: 0
-            val selectedDietType = preferences[PreferenceKeys.selectedDietType] ?: Constants.DEFAULT_DIET_TYPE
+            val selectedDietType = preferences[PreferenceKeys.selectedDietType] ?: DEFAULT_DIET_TYPE
             val selectedDietTypeId = preferences[PreferenceKeys.selectedDietTypeId] ?: 0
             MealAndDietType(
                 selectedMealType,

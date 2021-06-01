@@ -10,7 +10,7 @@
             type="com.example.foody.viewmodels.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightGray"
@@ -18,8 +18,8 @@
 
         <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical"
@@ -37,13 +37,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="60dp"
+            android:layout_gravity="bottom|right"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_restaurant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white" />
+
+
 
         <ImageView
             android:id="@+id/error_image_view"
@@ -52,6 +55,7 @@
             android:alpha="0.5"
             android:src="@drawable/ic_sad"
             android:visibility="invisible"
+            android:layout_gravity="center"
             readApiResponse="@{mainViewModel.recipeResponse}"
             readDatabase="@{mainViewModel.readRecipe}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:alpha="0.5"
+            android:layout_gravity="center"
             android:text="No Internet Connection"
             readApiResponse2="@{mainViewModel.recipeResponse}"
             readDatabase2="@{mainViewModel.readRecipe}"
@@ -77,5 +82,5 @@
             app:layout_constraintStart_toStartOf="@id/error_image_view"
             app:layout_constraintTop_toBottomOf="@+id/error_image_view" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
