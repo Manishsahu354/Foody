@@ -3,6 +3,7 @@ package com.example.foody.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolBar = findViewById<Toolbar>(R.id.toolbar)
         getSupportActionBar()?.hide();
 
         navController = findNavController(R.id.navHostFragment)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         bottomNavigationView.setupWithNavController(navController)
+            setSupportActionBar(toolBar)
         setupActionBarWithNavController(navController,appBarConfiguration)
     }
 

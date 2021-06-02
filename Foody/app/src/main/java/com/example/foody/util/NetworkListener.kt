@@ -30,14 +30,12 @@ class NetworkListener:ConnectivityManager.NetworkCallback() {
         return isNetworkAvailable
     }
     override fun onAvailable(network: Network) {
-        super.onAvailable(network)
 
         isNetworkAvailable.value = true
 
     }
 
     override fun onLost(network: Network) {
-        super.onLost(network)
         isNetworkAvailable.value = false
     }
 }
