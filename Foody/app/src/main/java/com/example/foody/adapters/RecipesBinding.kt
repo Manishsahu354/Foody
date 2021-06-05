@@ -4,11 +4,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.foody.data.database.RecipesDatabase
-import com.example.foody.data.database.RecipesEntity
+import com.example.foody.data.database.entities.RecipesEntity
 import com.example.foody.model.FoodRecipe
 import com.example.foody.util.NetworkResult
-import retrofit2.Response
 
 class RecipesBinding {
 

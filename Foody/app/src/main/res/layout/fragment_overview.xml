@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layoutDescription="@xml/fragment_overview_scene"
     tools:context=".ui.fragment.overview.OverviewFragment">
 
 
@@ -34,7 +36,7 @@
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="12dp"
         android:text="100"
         android:textColor="@color/white"
@@ -48,16 +50,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_clock"
-        app:tint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/timeTextView"
         app:layout_constraintEnd_toEndOf="@+id/timeTextView"
-        app:layout_constraintStart_toStartOf="@+id/timeTextView" />
+        app:layout_constraintStart_toStartOf="@+id/timeTextView"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/likesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="32dp"
         android:text="100"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -70,10 +72,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_heart"
-        app:tint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/likesTextView"
         app:layout_constraintEnd_toEndOf="@+id/likesTextView"
-        app:layout_constraintStart_toStartOf="@+id/likesTextView" />
+        app:layout_constraintStart_toStartOf="@+id/likesTextView"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/titleTextView"
@@ -82,10 +84,10 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="12dp"
-        android:text="@string/title"
-        android:textSize="22sp"
         android:fontFamily="@font/courgette"
+        android:text="@string/title"
         android:textColor="@color/darkGray"
+        android:textSize="22sp"
         android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,11 +120,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:tint="@color/darkGray"
         android:src="@drawable/ic_check"
         android:textColor="@color/darkGray"
         app:layout_constraintStart_toStartOf="@+id/vegetarianImage"
-        app:layout_constraintTop_toBottomOf="@+id/vegetarianImage" />
+        app:layout_constraintTop_toBottomOf="@+id/vegetarianImage"
+        app:tint="@color/darkGray" />
 
     <TextView
         android:id="@+id/veganTextView"
@@ -141,10 +143,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:src="@drawable/ic_check"
-        app:tint="@color/darkGray"
         app:layout_constraintBottom_toBottomOf="@+id/vegetarianTextView"
         app:layout_constraintStart_toEndOf="@+id/vegetarianTextView"
-        app:layout_constraintTop_toTopOf="@+id/vegetarianTextView" />
+        app:layout_constraintTop_toTopOf="@+id/vegetarianTextView"
+        app:tint="@color/darkGray" />
 
     <TextView
         android:id="@+id/glutenFreeTextView"
@@ -222,6 +224,7 @@
         app:layout_constraintTop_toTopOf="@+id/cheap_imageView" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
@@ -235,7 +238,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
 
             <TextView
@@ -243,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
