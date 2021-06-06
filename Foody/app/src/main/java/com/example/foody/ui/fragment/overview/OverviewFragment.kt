@@ -10,48 +10,51 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import coil.load
 import com.example.foody.R
+import com.example.foody.databinding.FragmentOverviewBinding
 import com.example.foody.model.Result
-import kotlinx.android.synthetic.main.fragment_overview.view.*
 import org.jsoup.Jsoup
 
 
 class OverviewFragment : Fragment() {
 
+    private var _binding:FragmentOverviewBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_overview, container, false)
+        _binding =  FragmentOverviewBinding.inflate(inflater, container, false)
 
         val args = arguments
         val myBundle:Result? = args?.getParcelable("recipeBundle")
 
-        view.mainImageView.load(myBundle?.image)
-        view.titleTextView.text = myBundle?.title
-        view.likesTextView.text = myBundle?.aggregateLikes.toString()
-        view.timeTextView.text = myBundle?.readyInMinutes.toString()
+        binding.mainImageView.load(myBundle?.image)
+        binding.titleTextView.text = myBundle?.title
+        binding.likesTextView.text = myBundle?.aggregateLikes.toString()
+        binding.timeTextView.text = myBundle?.readyInMinutes.toString()
         myBundle?.summary.let {
             val summary = Jsoup.parse(it).text()
-            view.summary_textView.text = summary
+            binding.summaryTextView.text = summary
         }
 
 
 
         myBundle?.let {bundle->
 
-            updateColors(bundle.vegetarian, view.vegetarianTextView, view.veganImageView)
-            updateColors(bundle.vegan, view.veganTextView, view.veganImageView)
-            updateColors(bundle.cheap, view.cheap_textView, view.cheap_imageView)
-            updateColors(bundle.dairyFree, view.dairy_free_textView, view.dairy_free_imageView)
-            updateColors(bundle.glutenFree, view.glutenFreeTextView, view.glutenFreeImage)
-            updateColors(bundle.veryHealthy, view.healthy_textView, view.healthy_imageView)
+            updateColors(bundle.vegetarian, binding.vegetarianTextView, binding.veganImageView)
+            updateColors(bundle.vegan, binding.veganTextView, binding.veganImageView)
+            updateColors(bundle.cheap, binding.cheapTextView, binding.cheapImageView)
+            updateColors(bundle.dairyFree, binding.dairyFreeTextView, binding.dairyFreeImageView)
+            updateColors(bundle.glutenFree, binding.glutenFreeTextView, binding.glutenFreeImage)
+            updateColors(bundle.veryHealthy, binding.healthyTextView, binding.healthyImageView)
 
         }
 
 
 
-        return view
+        return binding.root
     }
 
     private fun updateColors(stateIsOn: Boolean, textView: TextView, imageView: ImageView) {
@@ -59,6 +62,11 @@ class OverviewFragment : Fragment() {
             imageView.setColorFilter(ContextCompat.getColor(requireContext(),R.color.green))
             textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

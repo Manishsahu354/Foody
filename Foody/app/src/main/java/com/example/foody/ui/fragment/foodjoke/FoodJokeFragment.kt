@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.foody.R
 import com.example.foody.databinding.FragmentFoodJokeBinding
-import com.example.foody.util.Constants
 import com.example.foody.util.Constants.Companion.API_KEY
 import com.example.foody.util.NetworkResult
 import com.example.foody.viewmodels.MainViewModel
@@ -31,7 +30,7 @@ class FoodJokeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFoodJokeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -46,7 +45,7 @@ class FoodJokeFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.foodJokeTextView.text = response.data?.text
                     if(response.data != null){
-                        foodJoke = response.data.text
+                        foodJoke = response.data.text.toString()
                     }
                 }
                 is NetworkResult.Error -> {
@@ -87,7 +86,7 @@ class FoodJokeFragment : Fragment() {
             mainViewModel.readFoodJoke.observe(viewLifecycleOwner, Observer {database->
                 if(!database.isNullOrEmpty()){
                     binding.foodJokeTextView.text = database[0].foodJoke.text
-                    foodJoke = database[0].foodJoke.text
+                    foodJoke = database[0].foodJoke.text.toString()
                 }
             })
 

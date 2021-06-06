@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foody.R
 import com.example.foody.adapters.FavoriteRecipesAdapter
-import com.example.foody.adapters.IngredientsAdapter
 import com.example.foody.databinding.FragmentFavoriteRecipesBinding
-import com.example.foody.databinding.FragmentInstructionBinding
 import com.example.foody.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 @AndroidEntryPoint
 class FavoriteRecipesFragment : Fragment() {
@@ -28,7 +26,7 @@ class FavoriteRecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
          _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
 
@@ -76,5 +74,6 @@ class FavoriteRecipesFragment : Fragment() {
         _binding = null
         mAdapter.clearContextualActionMode()
     }
+
 
 }
